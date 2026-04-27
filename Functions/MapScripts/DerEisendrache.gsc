@@ -10,7 +10,7 @@ PopulateDerEisendracheScripts(menu)
                 self addOptBool(AreLandingPadsEnabled(), "Enable All Landing Pads", ::EnableAllLandingPads);
                 self addOpt("Side Easter Eggs", ::newMenu, "Castle Side Easter Eggs");
                 self addOpt("Bow Quests", ::newMenu, "Bow Quests");
-                addOpt( "Complete The Easter Egg", ::deee);
+                self addOpt( "Easter Egg Complete", ::deee);
             break;
         
         case "Castle Side Easter Eggs":
