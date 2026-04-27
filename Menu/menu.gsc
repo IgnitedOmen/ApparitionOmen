@@ -197,7 +197,7 @@ RunMenuOptions(menu)
         case "Der Eisendrache Scripts":
         case "Castle Side Easter Eggs":
         case "Bow Quests":
-        case "Easter Egg Complete";
+        case "Easter Egg Complete":
         case "Fire Bow":
         case "Lightning Bow":
         case "Void Bow":
