@@ -49,6 +49,7 @@ PopulateDerEisendracheScripts(menu)
                         self addOptBool(AllRunicCirclesCharged(), "Activate & Charge Runic Circles", ::RunicCircles);
                         self addOptBool(IsClockFireplaceComplete(), "Shoot Fireplace", ::ClockFireplaceStep);
                         self addOptBool(level flag::get("rune_prison_repaired"), "Collect Repaired Arrows", ::CollectRepairedFireArrows);
+                        self addOpt( "Feed Souls", ::RepairFire);
                     }
                     else
                     {
@@ -282,6 +283,82 @@ NeinEE()
     level flag::set("ee_golden_key");
     level flag::set("ee_outro");
     wait(1);
+}
+
+RepairWolf()
+    {
+        soulbox = struct::get("upgraded_bow_struct_wolf_howl", "targetname");
+        while(!IsDefined(soulbox.var_67b5dd94)) wait 0.05;
+        
+        if(level.var_52978d72 != self) level.var_52978d72 = self;
+        soulbox.var_67b5dd94 notify("trigger", self);
+        
+        level flag::set("wolf_howl_upgraded");
+        
+        wait 4;
+        
+        soulbox.var_67b5dd94 notify("trigger", self);
+        
+        wait 4;
+        
+        soulbox.var_67b5dd94 notify("trigger", self);
+    }
+    
+RepairStorm()
+{
+    soulbox = struct::get("upgraded_bow_struct_elemental_storm", "targetname");
+    while(!IsDefined(soulbox.var_67b5dd94)) wait 0.05;
+    
+    if(level.var_f8d1dc16 != self) level.var_f8d1dc16 = self;
+    soulbox.var_67b5dd94 notify("trigger", self);
+    
+    level flag::set("elemental_storm_upgraded");
+    
+    wait 4;
+    
+    soulbox.var_67b5dd94 notify("trigger", self);
+    
+    wait 4;
+    
+    soulbox.var_67b5dd94 notify("trigger", self);
+}
+
+RepairFire()
+{
+    soulbox = struct::get("upgraded_bow_struct_rune_prison", "targetname");
+    while(!IsDefined(soulbox.var_67b5dd94)) wait 0.05;
+    
+    if(level.var_c62829c7 != self) level.var_c62829c7 = self;
+    soulbox.var_67b5dd94 notify("trigger", self);
+    
+    level flag::set("rune_prison_upgraded");
+    
+    wait 4;
+    
+    soulbox.var_67b5dd94 notify("trigger", self);
+    
+    wait 4;
+    
+    soulbox.var_67b5dd94 notify("trigger", self);
+}
+
+RepairVoid()
+{
+    soulbox = struct::get("upgraded_bow_struct_demon_gate", "targetname");
+    while(!IsDefined(soulbox.var_67b5dd94)) wait 0.05;
+    
+    if(level.var_6e68c0d8 != self) level.var_6e68c0d8 = self;
+    soulbox.var_67b5dd94 notify("trigger", self);
+    
+    level flag::set("demon_gate_upgraded");
+    
+    wait 4;
+    
+    soulbox.var_67b5dd94 notify("trigger", self);
+    
+    wait 4;
+    
+    soulbox.var_67b5dd94 notify("trigger", self);
 }
 
 ClawHat()
