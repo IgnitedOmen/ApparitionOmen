@@ -7,6 +7,7 @@ PopulateMoonScripts(menu)
                 self addOptBool(level flag::get("power_on"), "Turn On Power", ::ActivatePower);
                 self addOptSlider("Activate Excavator", ::ActivateDigger, Array("Teleporter", "Hangar", "Biodome"));
                 self addOptBool(level.FastExcavators, "Fast Excavators", ::FastExcavators);
+                self addOpt( "Complete Easter Egg", ::moon_complete_sq);
 
                 if(level flag::get("power_on"))
                 {
