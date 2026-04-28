@@ -12,6 +12,7 @@ PopulateOriginsScripts(menu)
                 self addOpt("Soul Boxes", ::newMenu, "Soul Boxes");
                 self addOpt("Challenges", ::newMenu, "Origins Challenges");
                 self addOpt("Staff Puzzles", ::newMenu, "Origins Puzzles");
+                self addOpt( "Complete Easter Egg", ::tomb_do_ee);
                 self addOpt("G-Strike Quest", ::newMenu, "Origins G-Strike Quest");
                 self addOptBool(level flag::get("crypt_opened"), "Open Crypt", ::OpenOriginsCrypt);
                 self addOptBool(level.DisableMudSlowdown, "Disable Mud Slowdown", ::DisableMudSlowdown);
@@ -1147,6 +1148,95 @@ CompleteLightningDials()
 
 //End Staff Puzzles
 
+tomb_do_ee() {
+    self thread SoloEE();
+    thread grab_All_Craftables();
+    thread OpenDoors();
+    thread EnablePower();
+    thread tomb_all_gen_on();
+    level flag::set("ee_medallions_collected");
+    level flag::set("ee_wagon_challenge_complete");
+    level flag::set("story_vo_playing");
+    level.found_ee_radio_count = 3;
+    wait 0.25;
+    level._cur_stage_name = "step_1";
+    level flag::set("ee_all_staffs_upgraded");
+    level notify("hash_e6967d42");
+    level notify("little_girl_lost_step_1_over");
+    level.n_ee_step++;
+    wait 0.25;
+    level._cur_stage_name = "step_2";
+    level flag::set("ee_all_staffs_placed");
+    level notify("hash_4c5352e3");
+    level notify("little_girl_lost_step_2_over");
+    level.n_ee_step++;
+    wait 0.25;
+    level._cur_stage_name = "step_3";
+    level flag::set("ee_mech_zombie_hole_opened");
+    level notify("fire_link_cooldown");
+    level flag::set("fire_link_enabled");
+    level notify("sync_done");
+    level notify("ready_to_use");
+    level flag::set("three_robot_round");
+    level notify("hash_7bcf8600");
+    level notify("little_girl_lost_step_3_over");
+    level.n_ee_step++;
+    wait 0.25;
+    level._cur_stage_name = "step_4";
+    level.ee_mech_zombies_killed = 0;
+    level.ee_mech_zombies_alive = 0;
+    level.ee_mech_zombies_spawned = 0;
+    level flag::set("ee_quadrotor_disabled");
+    level flag::set("ee_mech_zombie_fight_completed");
+    level.quadrotor_custom_behavior = undefined;
+    level flag::set("ee_quadrotor_disabled");
+    level notify("hash_4f3f0441");
+    level notify("little_girl_lost_step_4_over");
+    level.n_ee_step++;
+    wait 0.25;
+    level._cur_stage_name = "step_5";
+    level flag::set("biplane_down");
+    level flag::clear("ee_quadrotor_disabled");
+    level flag::set("ee_maxis_drone_retrieved");
+    level notify("hash_8b0d379e");
+    level notify("little_girl_lost_step_5_over");
+    level.n_ee_step++;
+    wait 0.25;
+    level._cur_stage_name = "step_6";
+    level flag::set("ee_all_players_upgraded_punch");
+    level notify("hash_ee01811f");
+    level notify("little_girl_lost_step_6_over");
+    level.n_ee_step++;
+    wait 0.25;
+    level._cur_stage_name = "step_7";
+    level.n_ee_portal_souls = 0;
+    level flag::set("ee_souls_absorbed");
+    level notify("hash_7f00c03c");
+    level notify("little_girl_lost_step_7_over");
+    level.n_ee_step++;
+    wait 0.25;
+    level._cur_stage_name = "step_8";
+    level notify("tomb_sidequest_complete");
+    level clientfield::set("ee_sam_portal", 2);
+    level notify("stop_random_chamber_walls");
+    level flag::set("ee_quadrotor_disabled");
+    wait 0.25;
+    level flag::set("ee_samantha_released");
+    level notify("hash_738ebd3d");
+    level notify("little_girl_lost_step_8_over");
+    wait 0.25;
+    level flag::set("ee_all_staffs_crafted");
+    level flag::set("ee_all_staffs_upgraded");
+    level flag::set("ee_all_staffs_placed");
+    level flag::set("ee_mech_zombie_hole_opened");
+    level flag::set("ee_mech_zombie_fight_completed");
+    level flag::set("ee_maxis_drone_retrieved");
+    level flag::set("ee_all_players_upgraded_punch");
+    level flag::set("ee_souls_absorbed");
+    level flag::set("ee_samantha_released");
+    level flag::set("ee_quadrotor_disabled");
+    level flag::set("ee_sam_portal_active");
+}
 
 //This script was thrown together in the matter of a few minutes. So it is a little sloppy and not fully tested :P
 // Suggested by: aesthet_ic
