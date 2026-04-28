@@ -5,7 +5,6 @@ PopulateZetsubouNoShimaScripts(menu)
         case "Zetsubou No Shima Scripts":
             self addMenu(menu);
                 self addOptBool(level flag::get("power_on"), "Turn On Power", ::ZNS_ActivatePower);
-				self addOptBool(level flag::get("power_on"), "Complete Easter Egg", ::ZetEE);
                 self addOptBool(self clientfield::get_to_player("bucket_held"), "Collect Bucket", ::ZNSGrabWaterBucket);
                 self addOpt("Bucket Water", ::newMenu, "ZNS Bucket Water");
                 
@@ -20,6 +19,7 @@ PopulateZetsubouNoShimaScripts(menu)
                 
                 self addOpt("Skulltar Teleports", ::newMenu, "Skulltar Teleports");
                 self addOpt("Challenges", ::newMenu, "Map Challenges");
+				self addOptBool(level flag::get("power_on"), "Complete Easter Egg", ::ZetEE);
                 self addOptBool((level flag::exists("trilogy_released") && level flag::get("trilogy_released")), "Mesmerize Map", ::MesmerizeMap);
                 self addOptBool((level flag::exists("player_has_aa_gun_ammo") && level flag::get("player_has_aa_gun_ammo")), "Flak Gun Bullet", ::ZNSFlakBullet);
                 self addOptBool(self HasWeapon(level.w_controllable_spider), "Controllable Spider", ::GiveControllableSpider);
