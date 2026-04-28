@@ -9,6 +9,7 @@ PopulateSOEScripts(menu)
                 self addOpt("Smashables", ::newMenu, "SOE Smashables");
                 self addOpt("Power Switches", ::newMenu, "SOE Power Switches");
                 self addOpt("Snakeskin Boots", ::newMenu, "Snakeskin Boots");
+                self addOpt( "Complete EE", ::ShadowsEEAll);
 
                 if(level.players.size < 4)
                     self addOptBool(level.SOEAllowFullEE, "Allow Full Easter Egg(Less Than 4 Players)", ::SOEAllowFullEE);
