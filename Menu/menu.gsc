@@ -5,24 +5,21 @@ RunMenuOptions(menu)
         case "Main":
             self addMenu((self.MenuDesign == "Native") ? "Main Menu" : GetMenuName());
                 self addOpt("Basic Scripts", ::newMenu, "Basic Scripts");
-                self addOpt("Menu Customization", ::newMenu, "Menu Customization");
-                self addOpt("Message Menu", ::newMenu,"Message Menu");
-                self addOpt("Teleport Menu", ::newMenu, "Teleport Menu");
+                
 
                 if(self getVerification() > 2) //VIP
                 {
                     self addOpt("Power-Up Menu", ::newMenu, "Power-Up Menu");
                     self addOpt("Profile Management", ::newMenu, "Profile Management");
-                    self addOpt("Model Manipulation", ::newMenu, "Model Manipulation");
                     self addOpt("Weaponry", ::newMenu, "Weaponry");
                     self addOpt("Bullet Menu", ::newMenu, "Bullet Menu");
+                    self addOpt("Server Modifications", ::newMenu, "Server Modifications");
+                    self addOpt("Server Tweakables", ::newMenu, "Server Tweakables");
+                    self addOpt("Zombie Options", ::newMenu, "Zombie Options");
                     self addOpt("Fun Scripts", ::newMenu, "Fun Scripts");
-                    self addOpt("Aimbot Menu", ::newMenu, "Aimbot Menu");
 
                     if(self getVerification() > 3) //Admin
                     {
-                        self addOpt("Forge Options", ::newMenu, "Forge Options");
-                        self addOpt("Entity Options", ::newMenu, "Entity Options");
                         self addOpt("Advanced Scripts", ::newMenu, "Advanced Scripts");
 
                         if(ReturnMapName() != "Unknown")
@@ -30,9 +27,6 @@ RunMenuOptions(menu)
                         
                         if(self getVerification() > 4) //Co-Host
                         {
-                            self addOpt("Server Modifications", ::newMenu, "Server Modifications");
-                            self addOpt("Server Tweakables", ::newMenu, "Server Tweakables");
-                            self addOpt("Zombie Options", ::newMenu, "Zombie Options");
                             self addOpt("Spawnables", ::newMenu, "Spawnables");
 
                             if(self IsHost() || self isDeveloper())
@@ -40,9 +34,8 @@ RunMenuOptions(menu)
                             
                             self addOpt("Players Menu", ::newMenu, "Players");
                             self addOpt("All Players Menu", ::newMenu, "All Players");
-
-                            if(self IsHost() || self isDeveloper())
-                                self addOpt("Game Modes", ::newMenu, "Game Modes");
+                            self addOpt("Teleport Menu", ::newMenu, "Teleport Menu");
+                            self addOpt("Menu Customization", ::newMenu, "Menu Customization");
                         }
                     }
                 }
