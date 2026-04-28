@@ -5,7 +5,7 @@ PopulateZetsubouNoShimaScripts(menu)
         case "Zetsubou No Shima Scripts":
             self addMenu(menu);
                 self addOptBool(level flag::get("power_on"), "Turn On Power", ::ZNS_ActivatePower);
-				self addOptBool(level flag::get("power_on"), "Complete Easter Egg", ::zetsee);
+				self addOptBool(level flag::get("power_on"), "Complete Easter Egg", ::ZetEE);
                 self addOptBool(self clientfield::get_to_player("bucket_held"), "Collect Bucket", ::ZNSGrabWaterBucket);
                 self addOpt("Bucket Water", ::newMenu, "ZNS Bucket Water");
                 
