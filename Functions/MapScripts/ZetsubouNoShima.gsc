@@ -18,7 +18,7 @@ PopulateZetsubouNoShimaScripts(menu)
                     self addOpt("KT-4 Upgrade Parts", ::newMenu, "KT-4 Upgrade Parts");
                 
                 self addOpt("Skulltar Teleports", ::newMenu, "Skulltar Teleports");
-
+                self addOpt("Skulltar Teleports", ::newMenu, "Skulltar Teleports");
                 self addOpt("Challenges", ::newMenu, "Map Challenges");
                 self addOptBool((level flag::exists("trilogy_released") && level flag::get("trilogy_released")), "Mesmerize Map", ::MesmerizeMap);
                 self addOptBool((level flag::exists("player_has_aa_gun_ammo") && level flag::get("player_has_aa_gun_ammo")), "Flak Gun Bullet", ::ZNSFlakBullet);
