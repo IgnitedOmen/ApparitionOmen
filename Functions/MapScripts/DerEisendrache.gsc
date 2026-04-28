@@ -10,7 +10,8 @@ PopulateDerEisendracheScripts(menu)
                 self addOptBool(AreLandingPadsEnabled(), "Enable All Landing Pads", ::EnableAllLandingPads);
                 self addOpt("Side Easter Eggs", ::newMenu, "Castle Side Easter Eggs");
                 self addOpt("Bow Quests", ::newMenu, "Bow Quests");
-                self addOpt("Complete Der Eisendrache", ::NeinEE);
+                self addOpt("Complete Easter Egg", ::NeinEE);
+                self addOptBool(level flag::set("ee_fuse_placed"), "Complete Easter Egg", ::NeinEE);
             break;
         
         case "Castle Side Easter Eggs":
