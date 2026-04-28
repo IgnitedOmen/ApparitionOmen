@@ -88,7 +88,6 @@ PopulateZetsubouNoShimaScripts(menu)
 
 zetsee()
 {
-    self lui_draw("Unlocked: ^2Zetsubou no shima Easter Egg Done");
     level flag::set("player_has_aa_gun_ammo");
     level flag::set("aa_gun_ammo_loaded");
     level flag::set("aa_gun_ee_complete");
