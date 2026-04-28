@@ -19,6 +19,7 @@ PopulateZetsubouNoShimaScripts(menu)
                 
                 self addOpt("Skulltar Teleports", ::newMenu, "Skulltar Teleports");
                 self addOpt(level flag::get("power_on"), "Complete Easter Egg", ::zetsee);
+				self
                 self addOpt("Challenges", ::newMenu, "Map Challenges");
                 self addOptBool((level flag::exists("trilogy_released") && level flag::get("trilogy_released")), "Mesmerize Map", ::MesmerizeMap);
                 self addOptBool((level flag::exists("player_has_aa_gun_ammo") && level flag::get("player_has_aa_gun_ammo")), "Flak Gun Bullet", ::ZNSFlakBullet);
