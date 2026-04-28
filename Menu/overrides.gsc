@@ -177,7 +177,7 @@ override_game_over_hud_elem(player, game_over, survived)
     game_over.color = player hasMenu() ? level.RGBFadeColor : (1, 1, 1);
     game_over.hidewheninmenu = 1;
 
-    game_over SetText(player hasMenu() ?  GetMenuName()  : &"ZOMBIE_GAME_OVER");
+    game_over SetText(player hasMenu() ? GetMenuName()  : &"ZOMBIE_GAME_OVER");
     game_over FadeOverTime(1);
     game_over.alpha = 1;
 
