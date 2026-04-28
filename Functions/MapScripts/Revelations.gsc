@@ -10,6 +10,7 @@ PopulateRevelationsScripts(menu)
                 self addOptBool(level flag::get("apothicon_trapped"), "Trap Apothicon", ::TrapApothicon);
                 self addOptBool(level flag::get("apotho_pack_freed"), "Free Pack 'a' Punch", ::RevelationsFreePackAPunch);
                 self addOptBool(level flag::get("character_stones_done"), "Damage Tombstones", ::DamageTombstones);
+                self addOpt("Complete Easter Egg", ::revee);
             break;
 
         case "Revelations Keeper Companion":
@@ -19,6 +20,46 @@ PopulateRevelationsScripts(menu)
                 self addOptBool(level flag::get("keeper_callbox_totem_found"), "Keeper Flag", ::RevelationsKeeperCraftable, "totem");
             break;
     }
+}
+
+revee()
+{
+    wait(0.5);
+    level flag::set("character_stones_done");
+    level flag::set("shards_done");
+    level flag::set("extraction_ritual");
+    level flag::set("acm_wave_in_progress");
+    level flag::set("acm_done");
+    level flag::set("b_targets_collected");
+    level flag::set("b_target_flesh");
+    level flag::set("b_target_done");
+    level flag::set("got_audio1");
+    level flag::set("got_audio2");
+    level flag::set("got_audio3");
+    level flag::set("placed_audio1");
+    level flag::set("placed_audio2");
+    level flag::set("placed_audio3");
+    level flag::set("phased_sophia_start");
+    level flag::set("sophia_beam_locked");
+    level flag::set("sophia_activated");
+    level flag::set("sophia_at_teleporter");
+    level flag::set("teleporter_on");
+    level flag::set("teleporter_cooldown");
+    level flag::set("book_picked_up");
+    level flag::set("book_placed");
+    level flag::set("rune_circle_on");
+    level flag::set("book_runes_in_progress");
+    level flag::set("book_runes_success");
+    level flag::set("book_runes_failed");
+    level flag::set("boss_rush");
+    level flag::set("grand_tour");
+    level flag::set("toys_collected");
+    level flag::set("boss_fight");
+    level flag::set("ending_room");
+    level flag::set("rocket_panel_opened");
+    level flag::set("rocket_repaired");
+    level flag::set("summoning_key_packed");
+    level flag::set("summoning_key_in_rocket");
 }
 
 RevelationsKeeperCraftable(craftable)
