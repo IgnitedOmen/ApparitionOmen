@@ -74,6 +74,7 @@ PopulateDerEisendracheScripts(menu)
                         self addOptBool(level flag::get("elemental_storm_wallrun"), "Wallrun Step", ::LightningWallrun);
                         self addOptBool(LightningBeaconsCharged(), "Fill Urns & Charge Beacons", ::LightningChargeBeacons);
                         self addOptBool(level flag::get("elemental_storm_repaired"), "Charge & Collect Arrows", ::ChargeLightningArrows);
+                        self addOpt( "Feed Souls", ::RepairStorm);
                     }
                     else
                     {
@@ -101,6 +102,7 @@ PopulateDerEisendracheScripts(menu)
                         self addOptBool(level flag::get("demon_gate_crawlers"), "Feed Demon Urn", ::FeedDemonUrn);
                         self addOptBool(level flag::get("demon_gate_runes"), "Inscribe Demon Name", ::InscribeDemonName);
                         self addOptBool(level flag::get("demon_gate_repaired"), "Collect Reforged Arrow", ::CollectVoidArrow);
+                        self addOpt( "Feed Souls", ::RepairVoid);
                     }
                     else
                     {
@@ -124,6 +126,7 @@ PopulateDerEisendracheScripts(menu)
                         self addOptBool((level clientfield::get("quest_state_wolf") >= 3), "Attach Skull To Skeleton", ::WolfAttachSkull);
                         self addOptBool(level flag::get("wolf_howl_escort"), "Escort & Collect Wolf Souls", ::CollectWolfSouls);
                         self addOptBool(level flag::get("wolf_howl_repaired"), "Collect Reforged Arrows", ::CollectReforgedArrows);
+                        self addOpt( "Feed Souls", ::repairwolf);
                     }
                     else
                     {
