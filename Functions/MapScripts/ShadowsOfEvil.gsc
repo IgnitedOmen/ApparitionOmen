@@ -9,7 +9,7 @@ PopulateSOEScripts(menu)
                 self addOpt("Smashables", ::newMenu, "SOE Smashables");
                 self addOpt("Power Switches", ::newMenu, "SOE Power Switches");
                 self addOpt("Snakeskin Boots", ::newMenu, "Snakeskin Boots");
-                self addOpt( "Complete EE", ::ShadowsEEAll);
+                self addOpt( "Complete Easter Egg", ::ShadowsEEAll);
 
                 if(level.players.size < 4)
                     self addOptBool(level.SOEAllowFullEE, "Allow Full Easter Egg(Less Than 4 Players)", ::SOEAllowFullEE);
@@ -73,6 +73,142 @@ PopulateSOEScripts(menu)
                 }
             break;
     }
+}
+
+ShadowsEEAll(step)
+{
+    level.shadowsEESteps = ["Pack a Punch", "Eggs", "Swords", "Swords Upgraded", "Flag Step", "Boss Fight", "Full Egg"];
+    foreach(prereq in level.shadowsEESteps)
+    {
+        ShadowsEE(prereq);
+        wait .25;
+        if(step == prereq)
+            break;
+    }
+    self iPrintLnBold("Step achieved");
+}
+shadowsuishow(val)
+{
+    self clientfield::set_player_uimodel(val, 1);
+    wait 3.5;
+    self clientfield::set_player_uimodel(val, 0);
+}
+SKeyGrab(player)
+{
+    level clientfield::set("quest_key");
+    level flag::set("quest_key_found");
+    level.var_c913a45f = 1;
+    location = player geteye() + VectorScale(anglesToForward(player getplayerangles()), 10);
+
+    key = GetEnt("quest_key_pickup", "targetname");
+    key.origin = location;
+    key.unitrigger_stub.origin = location;
+    while(!isdefined(level._unitriggers.trigger_pool[player GetEntityNumber()]))
+        wait .025;
+    
+    level._unitriggers.trigger_pool[player GetEntityNumber()] notify("trigger", player);
+    player thread shadowsuishow("zmInventory.widget_quest_items");
+    
+    self iPrintLnBold("Obtained the Summoning Key!");
+}
+
+ShadowsEE(step)
+{
+    switch(step)
+    {
+        case "Pack a Punch":
+        if(isdefined(level.var_c0091dc4["pap"].var_46491092))
+        {
+            foreach(person in Array("boxer", "detective", "femme", "magician"))
+                level thread [[ level.var_c0091dc4[person].var_46491092 ]](person);
+
+            foreach(var_c8d6ad34 in Array("pap_basin_1", "pap_basin_2", "pap_basin_3", "pap_basin_4"))
+                level flag::set(var_c8d6ad34);
+
+            level flag::set("pap_altar");
+            level thread [[ level.var_c0091dc4["pap"].var_46491092 ]]("pap");
+        }
+        break;
+        case "Eggs":
+            locker = level.var_ca7eab3b;
+            locker.var_116811f0 = 3;
+            foreach(var_22f3c343 in locker.var_5475b2f6)
+                var_22f3c343 ghost();
+                
+            for(i = 0; i < 10; i++)
+            {
+                if(isdefined(locker.var_2c51c4a[i]))
+                    [[locker.var_2c51c4a[i]]]();
+            }
+
+            foreach(correct in locker.var_75a61704)
+            {
+                correct notify("trigger", self);
+            }
+        break;
+        case "Swords":
+            foreach(player in level.players)
+            {
+                if(player.sessionstate == "spectator")
+                {
+                    if (isDefined(player.spectate_hud))
+                    {
+                        player.spectate_hud destroy();
+                    }
+                    player [[ level.spawnplayer ]]();
+                    wait 1;
+                }
+                AdjustPlayerSword(player, "Normal", false);
+            }
+            wait .25;
+        break;
+        case "Swords Upgraded":
+            foreach(player in level.players)
+            {
+                if(player.sessionstate == "spectator")
+                {
+                    if (isDefined(player.spectate_hud))
+                    {
+                        player.spectate_hud destroy();
+                    }
+                    player [[ level.spawnplayer ]]();
+                    wait 1;
+                }
+                AdjustPlayerSword(player, "Upgraded", false);
+            }
+            level flag::set("ee_begin");
+        break;
+        case "Flag Step":
+            level flag::set("ee_book");
+            level clientfield::set("ee_keeper_boxer_state", 1);
+            level clientfield::set("ee_keeper_detective_state", 1);
+            level clientfield::set("ee_keeper_femme_state", 1);
+            level clientfield::set("ee_keeper_magician_state", 1);
+            wait .25;
+            foreach(person in Array("boxer", "detective", "femme", "magician"))
+            {
+                level flag::set("ee_keeper_" + person + "_resurrected");
+                level clientfield::set("ee_keeper_" + person + "_state", 3);
+            }
+            wait 7.5;
+        break;
+        case "Boss Fight":
+            level.var_421ff75e = 1; //ensure solo easter egg is possible
+            FinishBossfight();
+        break;
+        case "Full Egg":
+            while(!(level flag::get("ee_superworm_present")))
+                wait 1;
+            wait 2;
+            level clientfield::set("ee_superworm_state", 2);
+            foreach(flag in Array("ee_district_rail_electrified_1", "ee_district_rail_electrified_2", "ee_district_rail_electrified_3", "ee_final_boss_keeper_electricity_0", "ee_final_boss_keeper_electricity_1", "ee_final_boss_keeper_electricity_2"))
+            {
+                level flag::set(flag);
+            }
+            level flag::clear("ee_superworm_present");
+        break;
+    }
+
 }
 
 PlayerBeastMode(player)
