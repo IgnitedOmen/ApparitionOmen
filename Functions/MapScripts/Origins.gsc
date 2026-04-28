@@ -5,6 +5,7 @@ PopulateOriginsScripts(menu)
         case "Origins Scripts":
             self addMenu(menu);
                 self addOptSlider("Weather", ::OriginsSetWeather, Array("None", "Rain", "Snow"));
+                self addOpt("Complete Easter Egg", ::tomb_do_ee);
                 self addOpt("Generators", ::newMenu, "Origins Generators");
                 self addOpt("Gateways", ::newMenu, "Origins Gateways");
                 self addOpt("Give Shovel", ::newMenu, "Give Shovel Origins");
@@ -17,7 +18,6 @@ PopulateOriginsScripts(menu)
                 self addOptBool(level.DisableMudSlowdown, "Disable Mud Slowdown", ::DisableMudSlowdown);
                 self addOptBool(level.DisableTankCooldown, "Disable Tank Cooldown", ::DisableTankCooldown);
                 self addOptIncSlider("Tank Speed [Default = 8]", ::OriginsTankSpeed, 1, 8, 25, 1);
-                self addOpt("Complete Easter Egg", ::tomb_do_ee);
             break;
 
         case "Origins Generators":
@@ -1520,129 +1520,6 @@ OriginsTankSpeed(speed)
     {
         if(level.vh_tank flag::get("tank_moving"))
             level.vh_tank SetSpeedImmediate(8);
-    }
-}
-
-tomb_ee_steps(val) {
-    if(val == 1) { //Step 1
-        self thread SoloEE();
-        thread OpenDoors();
-        thread EnablePower();
-        level._cur_stage_name = "step_1";
-        level flag::set("ee_medallions_collected");
-        level flag::set("ee_wagon_challenge_complete");
-        level flag::set("story_vo_playing");
-        level flag::set("ee_all_staffs_crafted");
-        level.found_ee_radio_count = 3;
-        wait 1;
-        level flag::set("ee_all_staffs_upgraded");
-        level notify("hash_e6967d42");
-        level notify("little_girl_lost_step_1_over");
-        level.n_ee_step++;
-    }
-    if(val == 2 ) { //Step 2
-        level._cur_stage_name = "step_2";
-        level flag::set("ee_all_staffs_placed");
-        level notify("hash_4c5352e3");
-        level notify("little_girl_lost_step_2_over");
-        level.n_ee_step++;
-        wait 0.25;
-        thread PlaySound_All("zmb_squest_robot_alarm_blast");
-    }
-    if(val == 3) { // Step 3
-        level._cur_stage_name = "step_3";
-        level flag::set("ee_mech_zombie_hole_opened");
-        level notify("fire_link_cooldown");
-        level flag::set("fire_link_enabled");
-        level notify("sync_done");
-        level notify("ready_to_use");
-        level flag::set("three_robot_round");
-        level notify("little_girl_lost_step_3_over");
-        wait 0.25;
-        thread PlaySound_All("zmb_squest_robot_button_activate");
-        level.n_ee_step++;
-        level notify("hash_7bcf8600");
-    }
-    if(val == 4) { //Step 4
-        level._cur_stage_name         = "step_4";
-        wait 0.025;
-        level.ee_mech_zombies_killed  = 0;
-        level.ee_mech_zombies_alive   = 0;
-        level.ee_mech_zombies_spawned = 0;
-        wait 0.025;
-        level flag::set("ee_quadrotor_disabled");
-        level flag::set("ee_mech_zombie_fight_completed");
-        level.quadrotor_custom_behavior = undefined;
-        level flag::set("ee_quadrotor_disabled");
-        wait 0.25;
-        level notify("hash_4f3f0441");
-        level notify("little_girl_lost_step_4_over");
-        level.n_ee_step++;
-    }
-    if(val == 5) { //Step 5
-        level._cur_stage_name = "step_5";
-        PlaySound_All("zmb_zombieblood_3rd_loop_other");
-        wait 0.025;
-        thread PlaySound_All("vox_maxi_drone_upgraded_0");
-        level flag::set("biplane_down");
-        level flag::clear("ee_quadrotor_disabled");
-        level flag::set("ee_maxis_drone_retrieved");
-        level notify("hash_8b0d379e");
-        level notify("little_girl_lost_step_5_over");
-        level.n_ee_step++;
-    }
-    if(val == 6) { //Step 6
-        level._cur_stage_name = "step_6";
-        wait 0.25;
-        level flag::set("ee_all_players_upgraded_punch");
-        level notify("hash_ee01811f");
-        level notify("rotatedone");
-        level notify("little_girl_lost_step_6_over");
-        punch_name = GetWeapon("one_inch_punch_upgraded");
-        self zm_weapons::weapon_give(punch_name);
-        level.n_ee_step++;
-    }
-    if(val == 7) { //Step 7
-        level._cur_stage_name   = "step_7";
-        level.n_ee_portal_souls = 0;
-        self clientfield::set("ee_zombie_soul_portal", 1);
-        level flag::set("ee_sam_portal_active");
-        level clientfield::set("ee_sam_portal", 1);
-        wait 0.25;
-        level.n_ee_portal_souls = 100;
-        level flag::set("ee_souls_absorbed");
-        level notify("hash_7f00c03c");
-        level notify("little_girl_lost_step_7_over");
-        level.n_ee_step++;
-    }
-    if(val == 8) {// Step 8
-        level._cur_stage_name = "step_8";
-        level clientfield::set("ee_sam_portal", 2);
-        level notify("stop_random_chamber_walls");
-        level notify("ee_quadrotor_disabled");
-        wait 0.25;
-        self notify("reached_end_node");
-        thread PlaySound_All("zmb_qrdrone_leave");
-        wait 0.25;
-        level notify("tomb_sidequest_complete");
-        level flag::set("ee_samantha_released");
-        level notify("hash_738ebd3d");
-        level notify("little_girl_lost_step_8_over");
-    }
-    if(val == 9) { //Main Flag Finishers
-        level flag::set("ee_all_staffs_crafted");
-        level flag::set("ee_all_staffs_upgraded");
-        level flag::set("ee_all_staffs_placed");
-        level flag::set("ee_mech_zombie_hole_opened");
-        level flag::set("ee_mech_zombie_fight_completed");
-        level flag::set("ee_maxis_drone_retrieved");
-        level flag::set("ee_all_players_upgraded_punch");
-        level flag::set("ee_souls_absorbed");
-        level flag::set("ee_samantha_released");
-        level flag::set("ee_quadrotor_disabled");
-        level flag::set("ee_sam_portal_active");
-        wait .5;
-        thread tomb_all_gen_on();
     }
 }
 
