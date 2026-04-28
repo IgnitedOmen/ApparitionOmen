@@ -693,14 +693,14 @@ LoadMenuVars()
     self.menuY = -161;
     self.instructionsX = -100;
     self.instructionsY = 230;
-    self.MenuWidth = 240;
+    self.MenuWidth = 200;
     self.MainTheme = (255, 215, 0);
     self.MenuDesign = GetMenuName();
     self.BoolDisplay = "Boxes";
     self.BoolLocation = "Left";
     self.OpenControls = Array("+speed_throw", "+melee");
     self.QuickControls = Array("+speed_throw", "+smoke");
-    self.ScrollAnimationTime = 0.12;
+    self.ScrollAnimationTime = 0.10;
     self.ColoredCursor = true;
     self.SpotlightCursor = true;
     saved = Int(self GetSavedVariable("menuSaved"));
