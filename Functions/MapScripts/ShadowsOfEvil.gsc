@@ -255,9 +255,6 @@ AdjustPlayerSword(player, type, noprint=false)
         default:
             player takeWeapon(level.var_15954023.weapons[player.originalindex][1]);
             player takeWeapon(level.var_15954023.weapons[player.originalindex][2]);
-            if(!noprint)
-                self lui_draw("Sword Updated");
-            return;
     }
 
     player.sword_power = 1;
@@ -271,15 +268,11 @@ AdjustPlayerSword(player, type, noprint=false)
     player zm_weapons::weapon_give(weapon, 0, 0, 1);
     player GadgetPowerSet(0, 100);
     player.current_sword = player.current_hero_weapon;
-
-    if(!noprint)
-        self lui_draw("Sword Updated");
 }
     
 SoloEE(player)
 {
     level.var_421ff75e = true;
-    self lui_draw("Solo egg enabled");
 }
 
 PlayerBeastMode(player)
