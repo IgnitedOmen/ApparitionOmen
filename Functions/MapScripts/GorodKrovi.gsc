@@ -13,7 +13,6 @@ PopulateGorodKroviScripts(menu)
 
 gkee()
 {
-    self lui_draw("Gorod Krovi EE's ^2Done^7.");
     wait(1);
     level flag::set("generator_charged");
     level flag::set("generator_on");
