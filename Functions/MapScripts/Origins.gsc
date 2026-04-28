@@ -5,7 +5,6 @@ PopulateOriginsScripts(menu)
         case "Origins Scripts":
             self addMenu(menu);
                 self addOptSlider("Weather", ::OriginsSetWeather, Array("None", "Rain", "Snow"));
-                self addOpt("Complete Easter Egg", ::tomb_do_ee);
                 self addOpt("Generators", ::newMenu, "Origins Generators");
                 self addOpt("Gateways", ::newMenu, "Origins Gateways");
                 self addOpt("Give Shovel", ::newMenu, "Give Shovel Origins");
@@ -1521,56 +1520,4 @@ OriginsTankSpeed(speed)
         if(level.vh_tank flag::get("tank_moving"))
             level.vh_tank SetSpeedImmediate(8);
     }
-}
-
-tomb_do_ee() 
-{
-    self thread SoloEE();
-    thread grab_All_Craftables();
-    thread OpenDoors();
-    thread EnablePower();
-    thread tomb_all_gen_on();
-    level flag::set("ee_medallions_collected");
-    level flag::set("ee_wagon_challenge_complete");
-    level flag::set("story_vo_playing");
-    level.found_ee_radio_count = 3;
-    wait 0.25;
-    level flag::set("ee_all_staffs_upgraded");
-    wait 0.25;
-    level flag::set("ee_all_staffs_placed");
-    wait 0.25;
-    level flag::set("ee_mech_zombie_hole_opened");
-    level flag::set("fire_link_enabled");
-    level flag::set("three_robot_round");
-    wait 0.25;
-    level flag::set("ee_quadrotor_disabled");
-    level flag::set("ee_mech_zombie_fight_completed");
-    level.quadrotor_custom_behavior = undefined;
-    level flag::set("ee_quadrotor_disabled");
-    wait 0.25;
-    level flag::set("biplane_down");
-    level flag::clear("ee_quadrotor_disabled");
-    level flag::set("ee_maxis_drone_retrieved");
-    wait 0.25;
-    level flag::set("ee_all_players_upgraded_punch");
-    wait 0.25;
-    level.n_ee_portal_souls = 0;
-    level flag::set("ee_souls_absorbed");
-    wait 0.25;
-    level clientfield::set("ee_sam_portal", 2);
-    level flag::set("ee_quadrotor_disabled");
-    wait 0.25;
-    level flag::set("ee_samantha_released");
-    wait 0.25;
-    level flag::set("ee_all_staffs_crafted");
-    level flag::set("ee_all_staffs_upgraded");
-    level flag::set("ee_all_staffs_placed");
-    level flag::set("ee_mech_zombie_hole_opened");
-    level flag::set("ee_mech_zombie_fight_completed");
-    level flag::set("ee_maxis_drone_retrieved");
-    level flag::set("ee_all_players_upgraded_punch");
-    level flag::set("ee_souls_absorbed");
-    level flag::set("ee_samantha_released");
-    level flag::set("ee_quadrotor_disabled");
-    level flag::set("ee_sam_portal_active");
 }
