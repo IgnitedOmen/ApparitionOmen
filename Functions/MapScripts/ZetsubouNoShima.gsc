@@ -8,6 +8,7 @@ PopulateZetsubouNoShimaScripts(menu)
                 self addOptBool(self clientfield::get_to_player("bucket_held"), "Collect Bucket", ::ZNSGrabWaterBucket);
                 self addOpt("Bucket Water", ::newMenu, "ZNS Bucket Water");
 				self addOpt( "Complete Easter Egg", ::zetsee);
+				self addOptBool(level flag::set("aa_gun_ee_complete"), "Complete Easter Egg", ::zetsee);
                 
                 if(!level flag::get("valve1_found") || !level flag::get("valve2_found") || !level flag::get("valve3_found"))
                     self addOpt("Pack 'a' Punch Parts", ::newMenu, "Pack 'a' Punch Parts");
