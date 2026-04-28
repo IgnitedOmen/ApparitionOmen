@@ -7,6 +7,7 @@ PopulateZetsubouNoShimaScripts(menu)
                 self addOptBool(level flag::get("power_on"), "Turn On Power", ::ZNS_ActivatePower);
                 self addOptBool(self clientfield::get_to_player("bucket_held"), "Collect Bucket", ::ZNSGrabWaterBucket);
                 self addOpt("Bucket Water", ::newMenu, "ZNS Bucket Water");
+				self addOpt( "Complete Easter Egg", ::zetsee);
                 
                 if(!level flag::get("valve1_found") || !level flag::get("valve2_found") || !level flag::get("valve3_found"))
                     self addOpt("Pack 'a' Punch Parts", ::newMenu, "Pack 'a' Punch Parts");
@@ -83,6 +84,29 @@ PopulateZetsubouNoShimaScripts(menu)
                     self addOpt("Skulltar " + (a + 1), ::TeleportPlayer, skulltars[a].origin, self);
             break;
     }
+}
+
+zetsee()
+{
+    self lui_draw("Unlocked: ^2Zetsubou no shima Easter Egg Done");
+    level flag::set("player_has_aa_gun_ammo");
+    level flag::set("aa_gun_ammo_loaded");
+    level flag::set("aa_gun_ee_complete");
+    level flag::set("flag_play_outro_cutscene");
+    level flag::set("elevator_part_gear1_found");
+    level flag::set("elevator_part_gear2_found");
+    level flag::set("elevator_part_gear3_found");
+    level flag::set("elevator_part_gear1_placed");
+    level flag::set("elevator_part_gear2_placed");
+    level flag::set("elevator_part_gear3_placed");
+    level flag::set("elevator_in_use");
+    level flag::set("elevator_at_bottom");
+    level flag::set("elevator_cooldown");
+    level flag::set("flag_hide_outro_water");
+    level flag::set("flag_show_outro_water");
+    level flag::set("elevator_door_closed");
+    level flag::set("elevator_door_closed");
+    level flag::set("prison_vines_cleared");
 }
 
 CollectKT4Parts(part)
