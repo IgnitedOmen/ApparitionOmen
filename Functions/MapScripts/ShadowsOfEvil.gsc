@@ -9,7 +9,7 @@ PopulateSOEScripts(menu)
                 self addOpt("Smashables", ::newMenu, "SOE Smashables");
                 self addOpt("Power Switches", ::newMenu, "SOE Power Switches");
                 self addOpt("Snakeskin Boots", ::newMenu, "Snakeskin Boots");
-                self addOpt( "Complete Easter Egg", ::ShadowsEEAll);
+                self addOpt("Complete Easter Egg", ::ShadowsEEAll);
 
                 if(level.players.size < 4)
                     self addOptBool(level.SOEAllowFullEE, "Allow Full Easter Egg(Less Than 4 Players)", ::SOEAllowFullEE);
@@ -209,6 +209,77 @@ ShadowsEE(step)
         break;
     }
 
+}
+
+FinishBossfight()
+{
+    level flag::set("ee_boss_defeated");
+    level notify(#"hash_a881e3fa");
+    level notify(#"hash_fbc505ba");
+    if(isdefined(level.var_dbc3a0ef) && isdefined(level.var_dbc3a0ef.var_93dad597))
+    {
+        level.var_dbc3a0ef.var_93dad597 delete();
+    }
+    foreach(person in Array("boxer", "detective", "femme", "magician"))
+    {
+        if(isdefined(level.var_f86952c7["boss_1_" + person]))
+        {
+            zm_unitrigger::unregister_unitrigger(level.var_f86952c7["boss_1_" + person]);
+        }
+        level clientfield::set( "ee_keeper_" + person + "_state", 7);
+        wait 0.1;
+    }
+}
+
+AdjustPlayerSword(player, type, noprint=false)
+{
+    if(!isdefined(level.var_15954023.weapons))
+        level.var_15954023.weapons = [];
+
+    if(!isDefined(level.var_15954023.weapons[player.originalindex]))
+    {
+        return;
+    }
+    
+    weapon = level.var_15954023.weapons[player.originalindex][1];
+    switch(type)
+    {
+        case "Normal":
+             weapon = level.var_15954023.weapons[player.originalindex][1];
+        break;
+
+        case "Upgraded":
+            weapon = level.var_15954023.weapons[player.originalindex][2];
+        break;
+
+        default:
+            player takeWeapon(level.var_15954023.weapons[player.originalindex][1]);
+            player takeWeapon(level.var_15954023.weapons[player.originalindex][2]);
+            if(!noprint)
+                self lui_draw("Sword Updated");
+            return;
+    }
+
+    player.sword_power = 1;
+    player notify(#"hash_b29853d8");
+    if(isdefined(player.var_c0d25105))
+    {
+        player.var_c0d25105 notify("returned_to_owner");
+    }
+    player.var_86a785ad = 1;
+    player notify(#"hash_b29853d8");
+    player zm_weapons::weapon_give(weapon, 0, 0, 1);
+    player GadgetPowerSet(0, 100);
+    player.current_sword = player.current_hero_weapon;
+
+    if(!noprint)
+        self lui_draw("Sword Updated");
+}
+    
+SoloEE(player)
+{
+    level.var_421ff75e = true;
+    self lui_draw("Solo egg enabled");
 }
 
 PlayerBeastMode(player)
