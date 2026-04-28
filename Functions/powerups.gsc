@@ -13,6 +13,8 @@ PopulatePowerupMenu(menu)
                 if(IsDefined(powerups) && powerups.size)
                 {
                     self addOptSlider("Spawn Location", ::PowerUpSpawnLocation, Array("Crosshairs", "Self"));
+                    self addOpt("Perkaholic", zm_bgb_perkaholic::activation);
+                    self addOpt("Shopping Free", zm_bgb_shopping_free::activation);
                     self addOpt("Reign Drops", zm_bgb_reign_drops::activation);
                     self addOpt("");
 
