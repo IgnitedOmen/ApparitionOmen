@@ -4,6 +4,23 @@ PopulateServerModifications(menu)
     {
         case "Server Modifications":
             self addMenu(menu);
+                
+                if(IsDefined(level.zombie_include_craftables) && level.zombie_include_craftables.size && !IsDefined(level.all_parts_required))
+                {
+                    if(level.zombie_include_craftables.size > 1 || level.zombie_include_craftables.size && GetArrayKeys(level.zombie_include_craftables)[0] != "open_table")
+                        self addOpt("Craftables", ::newMenu, "Zombie Craftables");
+                }
+
+                if(IsDefined(level.menu_traps) && level.menu_traps.size)
+                    self addOpt("Zombie Traps", ::newMenu, "Zombie Traps");
+
+
+                if(!IsVerkoMap())
+                    self addOpt("Mystery Box Options", ::newMenu, "Mystery Box Options");
+
+
+                self addOptBool(IsAllDoorsOpen(), "Open All Doors & Debris", ::OpenAllDoors);
+                self addOptSlider("Zombie Barriers", ::SetZombieBarrierState, Array("Break All", "Repair All"));
                 self addOptBool(level.SuperJump, "Super Jump", ::SuperJump);
                 self addOptBool((GetDvarInt("bg_gravity") == 200), "Low Gravity", ::LowGravity);
                 self addOptBool((GetDvarString("g_speed") == "500"), "Super Speed", ::SuperSpeed);
@@ -17,23 +34,7 @@ PopulateServerModifications(menu)
                 self addOptBool(level.Newsbar, "Newsbar", ::Newsbar);
                 self addOpt("Doheart Options", ::newMenu, "Doheart Options");
                 self addOpt("Lobby Timer Options", ::newMenu, "Lobby Timer Options");
-
-                if(!IsVerkoMap())
-                    self addOpt("Mystery Box Options", ::newMenu, "Mystery Box Options");
-                
-                self addOptBool(IsAllDoorsOpen(), "Open All Doors & Debris", ::OpenAllDoors);
-                self addOptSlider("Zombie Barriers", ::SetZombieBarrierState, Array("Break All", "Repair All"));
                 self addOpt("Spawn Bot", ::SpawnBot);
-
-                if(IsDefined(level.zombie_include_craftables) && level.zombie_include_craftables.size && !IsDefined(level.all_parts_required))
-                {
-                    if(level.zombie_include_craftables.size > 1 || level.zombie_include_craftables.size && GetArrayKeys(level.zombie_include_craftables)[0] != "open_table")
-                        self addOpt("Craftables", ::newMenu, "Zombie Craftables");
-                }
-
-                if(IsDefined(level.menu_traps) && level.menu_traps.size)
-                    self addOpt("Zombie Traps", ::newMenu, "Zombie Traps");
-                
                 self addOpt("Change Map", ::newMenu, "Change Map");
                 self addOpt("Restart Game", ::ServerRestartGame);
             break;
