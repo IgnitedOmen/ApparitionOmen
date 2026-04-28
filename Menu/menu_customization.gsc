@@ -691,7 +691,7 @@ LoadMenuVars()
 {
     self.menuX = -176; //Keep in mind that the position is close to the center to ensure the menu is visible on any resolution(use the menu position editor to place it where it best fits your liking)
     self.menuY = -161;
-    self.instructionsX = -100;
+    self.instructionsX = -60;
     self.instructionsY = 230;
     self.MenuWidth = 200;
     self.MainTheme = (255, 215, 0);
