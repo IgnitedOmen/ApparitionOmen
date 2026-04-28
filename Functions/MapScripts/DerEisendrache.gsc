@@ -252,6 +252,37 @@ DiscoInferno()
     level flag::set("ee_disco_inferno");
 }
 
+NeinEE()
+{
+    level flag::set("ee_start_done");
+    level flag::set("choose_time_travel_target");
+    level flag::set("reset_time_travel_target");
+    level flag::set("time_travel_teleporter_ready");
+    level flag::set("stop_time_travel");
+    level flag::set("switch_to_death_ray");
+    level flag::set("death_ray_trap_used");
+    level flag::set("dimension_set");
+    level flag::set("tesla_connector_launch_platform");
+    level flag::set("tesla_connector_lower_tower");
+    level flag::set("mpd_canister_replacement");
+    level flag::set("end_simon");
+    level flag::set("simon_press_check");
+    level flag::set("simon_terminal_activated");
+    level flag::set("simon_timed_out");
+    level flag::set("channeling_stone_replacement");
+    level flag::set("start_channeling_stone_step");
+    level flag::set("next_channeling_stone");
+    level flag::set("see_keeper");
+    level flag::set("sent_rockets_to_the_moon");
+    level flag::set("rockets_to_moon_vo_complete");
+    level flag::set("ee_fuse_held_by_team");
+    level flag::set("ee_fuse_placed");
+    level flag::set("ee_safe_open");
+    level flag::set("ee_golden_key");
+    level flag::set("ee_outro");
+    wait(1);
+}
+
 ClawHat()
 {
     if(level flag::get("ee_claw_hat"))
