@@ -9,7 +9,6 @@ RunMenuOptions(menu)
 
                 if(self getVerification() > 2) //VIP
                 {
-                    self addOpt("Favorites", ::newMenu, "Favorites");
                     self addOpt("Profile Management", ::newMenu, "Profile Management");
                     self addOpt("Weaponry", ::newMenu, "Weaponry");
                     self addOpt("Bullet Menu", ::newMenu, "Bullet Menu");
@@ -87,10 +86,6 @@ RunMenuOptions(menu)
         
         case "Power-Up Menu":
             self PopulatePowerupMenu(menu);
-            break;
-
-        case " Favorites":
-            self PopulateFavoritesMenu(menu);
             break;
         
         case "Advanced Scripts":
