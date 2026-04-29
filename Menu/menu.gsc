@@ -88,6 +88,10 @@ RunMenuOptions(menu)
         case "Power-Up Menu":
             self PopulatePowerupMenu(menu);
             break;
+
+        case " Favorites":
+            self PopulateFavoritesMenu(menu);
+            break;
         
         case "Advanced Scripts":
         case "Rain Options":
