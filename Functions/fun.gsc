@@ -7,13 +7,15 @@ PopulateFunScripts(menu, player)
                 player.DamagePointsMultiplier = 1;
             
             self addMenu(menu);
-                self addOpt("Earthquake", ::SendEarthquake, player);
+                self addOptBool(player HasPerk("specialty_locdamagecountsasheadshot"), "Head Drama", ::HeadDrama, player);
+				self addOptIncSlider("Points Multiplier", ::DamagePointsMultiplier, 1, 1, 10, 0.5, player);
+				self addOptSlider("Insta-Kill", ::PlayerInstaKill, Array("Disable", "All", "Melee"), player);
+				self addOpt("Earthquake", ::SendEarthquake, player);
                 self addOpt("Adventure Time", ::AdventureTime, player);
                 self addOpt("Force Field Options", ::newMenu, "Force Field Options");
                 self addOpt("Effects Man Options", ::newMenu, "Effects Man Options");
                 self addOpt("Audio Quotes", ::newMenu, "Sound/Music");
                 self addOpt("Hit Markers", ::newMenu, "Hit Markers");
-                self addOptSlider("Insta-Kill", ::PlayerInstaKill, Array("Disable", "All", "Melee"), player);
                 self addOptSlider("Death Skull", ::SpawnDeathSkull, Array("Spawn", "Delete All"), player);
                 self addOptSlider("Mount Camera", ::PlayerMountCamera, Array("Disable", "j_head", "j_neck", "j_spine4", "j_spinelower", "j_mainroot", "pelvis", "j_ankle_le", "j_ankle_ri"), player);
                 self addOptBool(player.DropCamera, "Drop Camera", ::PlayerDropCamera, player);
@@ -40,10 +42,8 @@ PopulateFunScripts(menu, player)
                 self addOptBool(player.DeleteGun, "Delete Gun", ::DeleteGun, player);
                 self addOptBool(player.RapidFire, "Rapid Fire", ::RapidFire, player);
                 self addOptBool(player.ExtraGore, "Extra Gore", ::ExtraGore, player);
-                self addOptBool(player HasPerk("specialty_locdamagecountsasheadshot"), "Head Drama", ::HeadDrama, player);
                 self addOptBool(player.PowerUpMagnet, "Power-Up Magnet", ::PowerUpMagnet, player);
                 self addOptBool(player.DisableEarningPoints, "Disable Earning Points", ::DisableEarningPoints, player);
-                self addOptIncSlider("Points Multiplier", ::DamagePointsMultiplier, 1, 1, 10, 0.5, player);
             break;
         
         case "Force Field Options":
