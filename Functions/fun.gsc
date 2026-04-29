@@ -8,8 +8,8 @@ PopulateFunScripts(menu, player)
             
             self addMenu(menu);
                 self addOptBool(player HasPerk("specialty_locdamagecountsasheadshot"), "Head Drama", ::HeadDrama, player);
-				self addOptIncSlider("Points Multiplier", ::DamagePointsMultiplier, 1, 1, 10, 0.5, player);
-				self addOptSlider("Insta-Kill", ::PlayerInstaKill, Array("Disable", "All", "Melee"), player);
+                self addOptIncSlider("Points Multiplier", ::DamagePointsMultiplier, 1, 1, 10, 0.5, player);
+                self addOptSlider("Insta-Kill", ::PlayerInstaKill, Array("Disable", "All", "Melee"), player);
 				self addOpt("Earthquake", ::SendEarthquake, player);
                 self addOpt("Adventure Time", ::AdventureTime, player);
                 self addOpt("Force Field Options", ::newMenu, "Force Field Options");
