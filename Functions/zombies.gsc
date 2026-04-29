@@ -6,6 +6,8 @@ PopulateZombieOptions(menu)
             self addMenu(menu);
                 self addOpt("Spawner", ::newMenu, "AI Spawner");
                 self addOpt("Prioritize", ::newMenu, "Prioritize Players");
+                self addOptSlider("Teleport", ::TeleportZombies, Array("Crosshairs", "Self"));
+                self addOptBool(level.ZombiesToCrosshairsLoop, "Zombies to Crosshair Lock", ::ZombiesToCrosshairsLoop);
                 self addOpt("Death Effect", ::newMenu, "Zombie Death Effect");
                 self addOpt("Damage Effect", ::newMenu, "Zombie Damage Effect");
                 self addOpt("Animations", ::newMenu, "Zombie Animations");
@@ -23,9 +25,7 @@ PopulateZombieOptions(menu)
                 if(ReturnMapName() == "Shadows Of Evil")
                     self addOptSlider("Push", ::PushZombies, Array("Left", "Right"));
                 
-                self addOptSlider("Teleport", ::TeleportZombies, Array("Crosshairs", "Self"));
                 self addOptIncSlider("Animation Speed", ::SetZombieAnimationSpeed, 1, 1, 2, 0.5);
-                self addOptBool(level.ZombiesToCrosshairsLoop, "Teleport To Crosshairs", ::ZombiesToCrosshairsLoop);
                 self addOptBool(level.DisableZombieCollision, "Disable Player Collision", ::DisableZombieCollision);
                 self addOptBool((GetDvarString("ai_disableSpawn") == "1"), "Disable Spawning", ::DisableZombieSpawning);
                 self addOptBool(level.DisableZombiePush, "Disable Push", ::DisableZombiePush);
