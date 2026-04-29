@@ -9,8 +9,7 @@ RunMenuOptions(menu)
 
                 if(self getVerification() > 2) //VIP
                 {
-                    self addOpt("Power-Up Menu", ::newMenu, "Power-Up Menu");
-                    self addOpt("Power-Up Menu", ::newMenu, "Power-Up Menu");
+                    self addOpt("Favorites", ::newMenu, "Favorites");
                     self addOpt("Profile Management", ::newMenu, "Profile Management");
                     self addOpt("Weaponry", ::newMenu, "Weaponry");
                     self addOpt("Bullet Menu", ::newMenu, "Bullet Menu");
@@ -33,6 +32,7 @@ RunMenuOptions(menu)
                             if(self IsHost() || self isDeveloper())
                                 self addOpt("Host Menu", ::newMenu, "Host Menu");
                             
+                            self addOpt("Power-Up Menu", ::newMenu, "Power-Up Menu");
                             self addOpt("Players Menu", ::newMenu, "Players");
                             self addOpt("All Players Menu", ::newMenu, "All Players");
                             self addOpt("Teleport Menu", ::newMenu, "Teleport Menu");
