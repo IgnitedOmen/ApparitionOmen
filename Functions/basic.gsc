@@ -6,15 +6,15 @@ PopulateBasicScripts(menu, player)
             self addMenu(menu);
                 self addOptBool(player.playerGodmode, "God Mode", ::Godmode, player);
                 self addOptBool(player.PlayerDemiGod, "Demi-God", ::DemiGod, player);
-                self addOptBool(player.Noclip, "Noclip", ::Noclip1, player);
                 self addOptBool(player.NoclipBind1, "Bind Noclip To [{+frag}]", ::BindNoclip, player);
-                self addOptBool(player.UFOMode, "UFO Mode", ::UFOMode, player);
                 self addOptSlider("Unlimited Ammo", ::UnlimitedAmmo, Array("Continuous", "Reload", "Disable"), player);
                 self addOptBool(player.UnlimitedEquipment, "Unlimited Equipment", ::UnlimitedEquipment, player);
                 self addOptBool(player.UnlimitedSpecial, "Unlimited Special Weapon", ::UnlimitedSpecial, player);
                 self addOptSlider("Modify Score", ::ModifyScore, Array("1000000", "100000", "10000", "1000", "100", "10", "0", "-10", "-100", "-1000", "-10000", "-100000", "-1000000"), player);
                 self addOpt("Perk Menu", ::newMenu, "Perk Menu");
                 self addOpt("Gobblegum Menu", ::newMenu, "Gobblegum Menu");
+                self addOptBool(player HasPerk("specialty_sprintfire"), "Shoot While Sprinting", ::ShootWhileSprinting, player);
+                self addOptBool(player HasPerk("specialty_unlimitedsprint"), "Unlimited Sprint", ::UnlimitedSprint, player);
                 self addOptIncSlider("Movement Speed", ::SetMovementSpeed, 0, 1, 3, 0.5, player);
                 self addOptBool(player.ThirdPerson, "Third Person", ::ThirdPerson, player);
                 self addOptBool(player.Invisibility, "Invisibility", ::Invisibility, player);
@@ -30,8 +30,6 @@ PopulateBasicScripts(menu, player)
                 self addOptBool(player.NoExplosiveDamage, "No Explosive Damage", ::NoExplosiveDamage, player);
                 self addOptIncSlider("Character Model Index", ::SetCharacterModelIndex, 0, player.characterIndex, 8, 1, player);
                 self addOptBool(player.LoopCharacterModelIndex, "Random Character Model Index", ::LoopCharacterModelIndex, player);
-                self addOptBool(player HasPerk("specialty_sprintfire"), "Shoot While Sprinting", ::ShootWhileSprinting, player);
-                self addOptBool(player HasPerk("specialty_unlimitedsprint"), "Unlimited Sprint", ::UnlimitedSprint, player);
                 self addOpt("Respawn", ::ServerRespawnPlayer, player);
                 self addOpt("Revive", ::PlayerRevive, player);
                 self addOptSlider("Death", ::PlayerDeath, Array("Down", "Kill"), player);
