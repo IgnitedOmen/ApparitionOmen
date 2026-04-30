@@ -10,6 +10,7 @@ PopulateDerEisendracheScripts(menu)
                 self addOptBool(AreLandingPadsEnabled(), "Enable All Landing Pads", ::EnableAllLandingPads);
                 self addOpt("Side Easter Eggs", ::newMenu, "Castle Side Easter Eggs");
                 self addOpt("Bow Quests", ::newMenu, "Bow Quests");
+                self addOpt("");
                 self addOpt("Complete Easter Egg^6", ::NeinEE);
             break;
         
@@ -18,6 +19,7 @@ PopulateDerEisendracheScripts(menu)
                 self addOptBool(level flag::get("ee_disco_inferno"), "Disco Inferno", ::DiscoInferno);
                 self addOptBool(level flag::get("ee_claw_hat"), "Claw Hat", ::ClawHat);
                 self addOptBool(self HasWeapon(GetWeapon("knife_plunger")), "Plunger Melee", ::PlungerMelee);
+                self addOpt("Teleporter Ready", ::EETeleporter);
             break;
 
         case "Bow Quests":
@@ -255,6 +257,12 @@ DiscoInferno()
         return self iPrintlnBold("^1ERROR: ^7The Disco Inferno Side EE Is Already Enabled");
     
     level flag::set("ee_disco_inferno");
+}
+
+EETeleporter()
+{
+    level flag::set("time_travel_teleporter_ready");
+    wait(1);
 }
 
 NeinEE()
