@@ -10,7 +10,8 @@ PopulateDerEisendracheScripts(menu)
                 self addOptBool(AreLandingPadsEnabled(), "Enable All Landing Pads", ::EnableAllLandingPads);
                 self addOpt("Side Easter Eggs", ::newMenu, "Castle Side Easter Eggs");
                 self addOpt("Bow Quests", ::newMenu, "Bow Quests");
-                self addOpt("Rocket Test Fire", ::RocketFire);
+                self addOpt("Open EE Safe", ::EESafeOpen);
+                self addOpt("Send Rockets To Moon", ::EERocketMoon);
                 self addOpt("");
                 self addOpt("Complete Easter Egg^6", ::NeinEE);
             break;
@@ -260,15 +261,16 @@ DiscoInferno()
     level flag::set("ee_disco_inferno");
 }
 
-EETeleporter()
+EERocketMoon()
 {
-    level flag::set("time_travel_teleporter_ready");
+    level flag::set("sent_rockets_to_the_moon");
+    level flag::set("rockets_to_moon_vo_complete");
     wait(1);
 }
 
-RocketFire()
+EESafeOpen()
 {
-    level flag::set( "rocket_firing" );
+    level flag::set("ee_safe_open");
     wait(1);
 }
 
@@ -293,8 +295,6 @@ NeinEE()
     level flag::set("start_channeling_stone_step");
     level flag::set("next_channeling_stone");
     level flag::set("see_keeper");
-    level flag::set("sent_rockets_to_the_moon");
-    level flag::set("rockets_to_moon_vo_complete");
     level flag::set("ee_fuse_held_by_team");
     level flag::set("ee_fuse_placed");
     level flag::set("ee_safe_open");
