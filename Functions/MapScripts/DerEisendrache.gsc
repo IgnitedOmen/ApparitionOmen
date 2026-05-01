@@ -10,6 +10,7 @@ PopulateDerEisendracheScripts(menu)
                 self addOptBool(AreLandingPadsEnabled(), "Enable All Landing Pads", ::EnableAllLandingPads);
                 self addOpt("Side Easter Eggs", ::newMenu, "Castle Side Easter Eggs");
                 self addOpt("Bow Quests", ::newMenu, "Bow Quests");
+                self addOpt("Rocket Test Fire", ::RocketFire);
                 self addOpt("");
                 self addOpt("Complete Easter Egg^6", ::NeinEE);
             break;
@@ -262,6 +263,12 @@ DiscoInferno()
 EETeleporter()
 {
     level flag::set("time_travel_teleporter_ready");
+    wait(1);
+}
+
+RocketFire()
+{
+    level flag::set( "rocket_firing" );
     wait(1);
 }
 
