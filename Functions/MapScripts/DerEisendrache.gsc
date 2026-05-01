@@ -21,7 +21,6 @@ PopulateDerEisendracheScripts(menu)
                 self addOptBool(level flag::get("ee_disco_inferno"), "Disco Inferno", ::DiscoInferno);
                 self addOptBool(level flag::get("ee_claw_hat"), "Claw Hat", ::ClawHat);
                 self addOptBool(self HasWeapon(GetWeapon("knife_plunger")), "Plunger Melee", ::PlungerMelee);
-                self addOpt("Teleporter Ready", ::EETeleporter);
             break;
 
         case "Bow Quests":
